@@ -16,9 +16,11 @@ const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'tr
 const app = express();
 
 app.use(bodyParser.json())
+
 //app.use('/api', userRoutes);
 
 // setup morgan which gives us http request logging
+app.use(express.json());
 app.use(morgan('dev'));
 // first to run to check the availability of database 
 (async () => {

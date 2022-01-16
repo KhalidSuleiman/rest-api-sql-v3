@@ -1,6 +1,6 @@
 
 'use strict'
-const  User = require('../models/User').User;    
+const  {User} = require('../models')    
 const { authenticateUser } = require('../middleware/userAuthenticate');
 // const createError = require('http-errors');
 const { asyncHandler } = require('../middleware/asyncHandler');
@@ -8,7 +8,7 @@ const express = require('express');
 const router = express.Router();
 
 
-router.get('/user', authenticateUser, asyncHandler(async (req,res)=> {
+router.get('/users', authenticateUser, asyncHandler(async (req,res)=> {
     
     const user = await req.currentUser;
     res.status(200).json({
@@ -21,15 +21,15 @@ router.get('/user', authenticateUser, asyncHandler(async (req,res)=> {
 }));
 
 
-router.post('/user', asyncHandler(async (req, res)=>{
+router.post('/users', asyncHandler(async (req, res)=>{
 
     try{
         console.log("____________________")
-        let User1 = req.body;
-        console.log(User1);
+        
+        console.log(req.body);
         console.log("====================")
         const user = await User.create(req.body);
-        res,location('/');
+        res.location('/');
         res.status(201).json(user);
 
     }catch(err){
