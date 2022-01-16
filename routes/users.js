@@ -17,6 +17,7 @@ router.get('/users', authenticateUser, asyncHandler(async (req,res)=> {
         lastName: user.lastName,
         emailAddress: user.emailAddress
     });
+    console.log(user)
     
 }));
 
