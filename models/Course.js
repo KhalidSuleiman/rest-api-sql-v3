@@ -20,13 +20,16 @@ module.exports = (sequelize) => {
    
   }, {sequelize});
   
-  Course.associations = (models) => {
-    Course.belongsTo(models.Users, {
-      as: 'userInfo', 
-      foreignKey: {
-          fieldName: 'userId',
+  Course.associate = (models) => {
+    Course.belongsTo(models.User, {
+      as : 'userInfo' ,
+      foreignKey: { fieldName : 'userId',
+                    allowNull: false,
+                  }}
+      /*{
+          fieldName: ,
           allowNull: false,
-          /*validate: {
+          validate: {
               notNull: {
                 msg: 'A user id is required'
               },
@@ -34,9 +37,10 @@ module.exports = (sequelize) => {
                 msg: 'Please provide a user id'
               }
           }*/
-      },
+     
 
-    })
+    //}
+    )
   };
   return Course;
 };
