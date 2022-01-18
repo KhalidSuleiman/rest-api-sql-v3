@@ -5,24 +5,7 @@ const Sequelize = require('sequelize');
 const bcrypt = require('bcrypt');
 
 module.exports = (sequelize) => {
-    class User extends Sequelize.Model {
-        static associate(models) {
-            User.hasMany(models.Course, {
-                foreignKey: {
-                    fieldName: 'userId',
-                    allowNull: false,
-                    validate: {
-                        notNull: {
-                            msg: 'A user ID is required.'
-                        },
-                        notEmpty: {
-                            msg: 'Please provide a user ID'
-                        }
-                    }
-                },
-            }) 
-         }
-    }
+    class User extends Sequelize.Model {}
 
         User.init({
             id: {
@@ -91,7 +74,24 @@ module.exports = (sequelize) => {
                 }
             }
         }, { sequelize });
-        
+    
+    User.associate =(models) => {
+            User.hasMany(models.Course, {
+                as: 'userInfo',
+                foreignKey: {
+                    fieldName: 'userId',
+                    allowNull: false,
+                   validate: {
+                        notNull: {
+                            msg: 'A user ID is required.'
+                        },
+                        notEmpty: {
+                            msg: 'Please provide a user ID'
+                        }
+                    }
+                },
+            }) 
+         };
          
     return User;
 };

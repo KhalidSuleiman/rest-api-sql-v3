@@ -5,7 +5,7 @@
 
 ### Get User (With Auth)
 GET http://localhost:5000/api/users HTTP/1.1
-Authorization: Basic joe@smith.com:password
+Authorization: Basic joe@smith.com:joepassword
 
 ### Get User (With Auth)
 GET http://localhost:5000/api/users HTTP/1.1
@@ -28,13 +28,13 @@ Content-Type: application/json
 
 ### Create User
 POST http://localhost:5000/api/users HTTP/1.1
-Authorization: Basic khalid@nabhani.com:password
+Authorization: Basic alaa@nabhani.com:password
 Content-Type: application/json
 
 {
-  "firstName": "khalid",
+  "firstName": "Alaa",
   "lastName": "nabhani",
-  "emailAddress": "khalid@nabhani.com",
+  "emailAddress": "alaad@nabhani.com",
   "password": "password"
 }
 ### Create User (Existing Email) - EXCEEDS

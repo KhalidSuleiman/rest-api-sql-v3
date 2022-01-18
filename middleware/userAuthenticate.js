@@ -18,8 +18,7 @@ exports.authenticateUser = async( req, res, next) => {
     
     if (credentials) {
         
-        let user = await User.findOne({ where: {emailAddress :
-            {[like] : credentials.name}}});
+        let user = await User.findOne({ where: {emailAddress : credentials.name}});
         // user = credentials;
         if(user === null){
             console.log("\x1b[34m", `User with email address --> ${credentials.name} Not found!`,"\x1b[0m");

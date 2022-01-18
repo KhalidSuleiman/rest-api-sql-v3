@@ -4,11 +4,11 @@
 const express = require('express');
 const morgan = require('morgan');
 const sequelize = require('sequelize');
-const models = require("./models");
+const  models  = require("./models");
 const bodyParser= require('body-parser');
 const userRoutes  = require('./routes/users')
 const courseRoutes = require('./routes/courses')
-
+const {User, Course} =models;
 // variable to enable global error logging
 const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'true';
 

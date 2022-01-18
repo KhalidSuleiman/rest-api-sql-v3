@@ -12,6 +12,12 @@
             "driver": "SQLite",
             "database": "${workspaceFolder:rest-api-sql-v3}/fsjstd-restapi.db",
             "name": "fsjstd-restapi"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:rest-api-sql-v3}/fsjstd-restapi.db",
+            "name": "TestDb"
         }
     ],
     "sqltools.useNodeRuntime": true
