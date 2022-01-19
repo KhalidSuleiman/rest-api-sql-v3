@@ -17,7 +17,7 @@ router.get('/users', authenticateUser, asyncHandler(async (req,res)=> {
         lastName: user.lastName,
         emailAddress: user.emailAddress
     });
-    console.log(user)
+    
     
 }));
 
@@ -25,16 +25,13 @@ router.get('/users', authenticateUser, asyncHandler(async (req,res)=> {
 router.post('/users', asyncHandler(async (req, res)=>{
 
     try{
-        console.log("____________________")
         
-        console.log(req.body);
-        console.log("====================")
         const user = await User.create(req.body);
         res.location('/');
         res.status(201).json(user);
 
     }catch(err){
-       console.log(err); 
+       
        if (
         err.name === 'SequelizeValidationError' ||
         err.name === 'SequelizeUniqueConstraintError'

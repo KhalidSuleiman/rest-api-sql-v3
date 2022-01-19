@@ -13,38 +13,28 @@ const like= Sequelize.Op.like;
 exports.authenticateUser = async( req, res, next) => {
     let message;
 
-    const credentials = auth(req);
-    console.log(credentials)
-    
-    if (credentials) {
-        
-        let user = await User.findOne({ where: {emailAddress : credentials.name}});
-        // user = credentials;
-        if(user === null){
-            console.log("\x1b[34m", `User with email address --> ${credentials.name} Not found!`,"\x1b[0m");
-            
-            
-            //res.status(401).json({ message: `User with email address --> ${credentials.name} Not found!` });
-        } else {
-            if (user) {
-                const authenticated = bcrypt.compareSync( credentials.pass, user.password);
-                console.log(authenticated)
-                if (authenticated) {
-                    console.log(`Authentication was successful for email address: ${user.firstName}`);
-                    req.currentUser = user;
-                } else {
-                    message = `Authentication failed for email address: ${user.firstName}`;
-                }
-            } else {
-                message = `User not found with following email address: ${credentials.name}`;
-            }
-        }
-    }
+    const credential =auth(req)
 
+    if (credential){
+        // find the user 
+        const user = await User.findOne({ where: {emailAddress: credential.name}  });
+        if(user){ // if the user name is found in database then check his password 
+            const authenticated = bcrypt.compareSync(credential.pass, user.password);
+            if(authenticated ){ // if paswrd match 
+                req.currentUser = user;  // store the user object into currentUser 
+                res.status(200)//.json(user)
+            }else {
+                message = `Authentication failure.. user: ${user.emailAddress} not found or wrong password`;
+            }
+
+        }else message = `Authentication failure.. user: ${credential.emailAddress} not found or wrong password`;
+    }else {
+        message = 'Authentication failed';
+    }
     if (message) {
         console.warn(message);
         res.status(401).json({ message: 'Access Denied' });
     } else {
-    next();
+        next();
     }
 };

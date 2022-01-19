@@ -13,8 +13,29 @@ module.exports = (sequelize) => {
     title : {
       type: Sequelize.STRING,
       allowNull: false,
+      validate: {
+        notEmpty: {
+            msg: 'Please enter a Course Title.'
+        },
+        notNull : {
+            msg: 'course title is required '
+
+        }
+    }
     },
-    description : Sequelize.TEXT,
+    description : { 
+      type : Sequelize.TEXT,
+      allowNull : false,
+      validate: {
+        notEmpty: {
+            msg: 'Please enter a course description'
+        },
+        notNull : {
+            msg: 'Course description is required '
+
+        }
+    }
+    },
     estimatedTime : Sequelize.STRING,
     materialsNeeded : Sequelize.STRING,
    
@@ -25,22 +46,10 @@ module.exports = (sequelize) => {
       as : 'userInfo' ,
       foreignKey: { fieldName : 'userId',
                     allowNull: false,
-                  }}
-      /*{
-          fieldName: ,
-          allowNull: false,
-          validate: {
-              notNull: {
-                msg: 'A user id is required'
-              },
-              notEmpty: {
-                msg: 'Please provide a user id'
-              }
-          }*/
-     
-
-    //}
-    )
-  };
+                  }
+                
+    }
+    
+    )};
   return Course;
 };
