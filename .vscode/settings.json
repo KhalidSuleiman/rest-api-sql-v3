@@ -20,5 +20,8 @@
             "name": "TestDb"
         }
     ],
-    "sqltools.useNodeRuntime": true
+    "sqltools.useNodeRuntime": true,
+    "cSpell.words": [
+        "asyncrouness"
+    ]
 }

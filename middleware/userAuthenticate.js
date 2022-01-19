@@ -8,7 +8,14 @@ const Sequelize = require('sequelize');
 const like= Sequelize.Op.like;
 
 
-
+/**
+ * User Authentication function 
+ * return status 200 , OK 
+ * or return 401 for unauthenticated  
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 
 exports.authenticateUser = async( req, res, next) => {
     let message;

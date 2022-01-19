@@ -1,3 +1,6 @@
+/**
+ * Defining User model structure and its associate 
+ */
 'use strict';
 
 //users model

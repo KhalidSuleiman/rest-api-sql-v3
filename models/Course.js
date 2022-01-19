@@ -1,3 +1,7 @@
+
+/**
+ * Defining Course model structure and its associate 
+ */
 'use strict';
 const Sequelize = require('sequelize');
 

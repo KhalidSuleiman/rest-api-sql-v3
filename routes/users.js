@@ -7,7 +7,9 @@ const { asyncHandler } = require('../middleware/asyncHandler');
 const express = require('express');
 const router = express.Router();
 
-
+/**
+ * GET ../api/Users to retrieve all users available  
+ */
 router.get('/users', authenticateUser, asyncHandler(async (req,res)=> {
     
     const user = await req.currentUser;
@@ -21,7 +23,9 @@ router.get('/users', authenticateUser, asyncHandler(async (req,res)=> {
     
 }));
 
-
+/**
+ * POST ../api/USERS to create a new User 
+ */
 router.post('/users', asyncHandler(async (req, res)=>{
 
     try{

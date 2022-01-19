@@ -7,6 +7,9 @@ const { userInfo } = require('os');
 const router = express.Router();
 const auth = require('basic-auth');
 
+/**
+ * GET ../api/Courses to get all courses available in db 
+ */
 router.get('/courses',  asyncHandler(async (req, res) => {
     
     const courses = await Course.findAll( {
@@ -25,7 +28,9 @@ router.get('/courses',  asyncHandler(async (req, res) => {
     res.json(courses);
 }));
 
-
+/**
+ * GET ../api/Courses/:id to get retrieve specific course from db  
+ */
 router.get('/courses/:id', asyncHandler( async (req, res, next)=>{
     const courses = await Course.findByPk( req.params.id, {
         include: [
@@ -41,7 +46,9 @@ router.get('/courses/:id', asyncHandler( async (req, res, next)=>{
 });   
 res.json(courses);
 }))
-
+/**
+ * POST ../api/Courses create new Courses and store it into db 
+ */
 router.post('/courses',authenticateUser, asyncHandler( async (req, res, next)=>{
    
     try{
@@ -63,7 +70,9 @@ router.post('/courses',authenticateUser, asyncHandler( async (req, res, next)=>{
     }
  
 }));
-
+/**
+ * PUT ../api/Courses to update a course data and validate the data and user 
+ */
 router.put('/courses/:id',authenticateUser, asyncHandler( async (req, res, next)=>{
     // const courseId = req.params.id;
     const course = await Course.findByPk( req.params.id)
@@ -94,7 +103,9 @@ router.put('/courses/:id',authenticateUser, asyncHandler( async (req, res, next)
     }
     
 }))
-
+/**
+ * DELETE ../api/Courses to delete a course record and validate user 
+ */
 router.delete('/courses/:id', authenticateUser, asyncHandler(async (req, res, next)=>{
     const courseId = req.params.id;
     const course = await Course.findByPk(courseId);
