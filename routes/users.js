@@ -32,7 +32,7 @@ router.post('/users', asyncHandler(async (req, res)=>{
         
         const user = await User.create(req.body);
         res.location('/');
-        res.status(201).json(user);
+        res.status(201);
 
     }catch(err){
        

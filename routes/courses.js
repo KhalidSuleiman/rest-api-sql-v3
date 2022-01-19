@@ -54,8 +54,13 @@ router.post('/courses',authenticateUser, asyncHandler( async (req, res, next)=>{
     try{
         
         const course = await Course.create(req.body);
-        res.location('/');
-        res.status(201).json(course);
+        // res.location(`/courses/${course.id}`);
+        // res.location( '/api/courses/' + course.id);
+        //res.setHeader('Location', '/api/courses/' + course.id);
+        res.status(201)
+        res.location(`/api/courses/${course.id}`)
+        res.end();
+        
 
     }catch(err){
        if (

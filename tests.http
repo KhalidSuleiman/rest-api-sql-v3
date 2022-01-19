@@ -7,13 +7,6 @@
 GET http://localhost:5000/api/users HTTP/1.1
 Authorization: Basic joe@smith.com:joepassword
 
-### Get User (With Auth)
-GET http://localhost:5000/api/users HTTP/1.1
-Authorization: Basic john23@smith.com:password
-
-### Get User (With Auth)
-GET http://localhost:5000/api/users HTTP/1.1
-Authorization: Basic khalid@nabhani.com:password
 ### Create User
 POST http://localhost:5000/api/users HTTP/1.1
 Authorization: Basic joe@smith.com:password
